@@ -12,11 +12,12 @@ module.exports = buildSchema(`#graphql
   }
 
   type RootQuery {
-    users: [User!]!
+    getUsers: [User!]!
   }
 
   type RootMutation {
     createUser(userInput: UserInput): User
+    deleteUser(userId: ID!): User
   }
 
   schema {

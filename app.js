@@ -7,20 +7,20 @@ const gqlSchema = require('./graphql/schema/index');
 const gqlResolvers = require('./graphql/resolvers/index');
 
 const app = express();
-const port = 8001;
+const PORT = 8001;
 
 app.use(bodyParser.json());
 
 // allow CORS
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   if (req.method === 'OPTIONS') {
+//     return res.sendStatus(200);
+//   }
+//   next();
+// });
 
 app.use(
   '/graphql',
@@ -36,7 +36,7 @@ mongoose
     `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@howtocreateanapp.zadn9.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
   )
   .then(() => {
-    app.listen(port, console.log(`running on port ${port}`));
+    app.listen(PORT, console.log(`running on port ${PORT}`));
   })
   .catch((err) => {
     console.log(err);
