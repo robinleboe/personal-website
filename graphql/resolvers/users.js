@@ -19,7 +19,7 @@ module.exports = {
       const result = await user.save();
       return { ...result._doc, password: null, _id: result.id };
     } catch (err) {
-      throw new Error("Can't create user!");
+      throw new Error('Could not create user!', { cause: err });
     }
   },
   deleteUser: async (args) => {
@@ -28,7 +28,7 @@ module.exports = {
       await User.deleteOne({ _id: args.userId });
       return user;
     } catch (err) {
-      console.log('delete error: ', err);
+      throw new Error('Could not delete user!', { cause: err });
     }
   },
   getUsers: async () => {
@@ -36,7 +36,7 @@ module.exports = {
       const users = await User.find();
       return users;
     } catch (err) {
-      throw new Error('Could not get users.');
+      throw new Error('Could not get users!', { cause: err });
     }
   },
 };
