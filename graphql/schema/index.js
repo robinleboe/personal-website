@@ -13,6 +13,7 @@ module.exports = buildSchema(`#graphql
 
   type RootQuery {
     getUsers: [User!]!
+    getUser(userId:ID!): User!
   }
 
   type RootMutation {

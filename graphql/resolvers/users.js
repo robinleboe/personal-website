@@ -24,11 +24,18 @@ module.exports = {
   },
   deleteUser: async (args) => {
     try {
-      const user = await User.findById(args.userId);
-      await User.deleteOne({ _id: args.userId });
+      const user = await User.findByIdAndDelete({ _id: args.userId });
       return user;
     } catch (err) {
       throw new Error('Could not delete user!', { cause: err });
+    }
+  },
+  getUser: async (args) => {
+    try {
+      const user = await User.findById({ _id: args.userId });
+      return user;
+    } catch (err) {
+      throw new Error('Could not find user!', { cause: err });
     }
   },
   getUsers: async () => {
