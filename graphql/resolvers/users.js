@@ -31,9 +31,9 @@ module.exports = {
       throw new Error('Could not delete user!', { cause: err });
     }
   },
-  getUser: async (args) => {
+  getUser: async ({ userId }) => {
     try {
-      const user = await User.findById({ _id: args.userId });
+      const user = await User.findById({ _id: userId });
       return user;
     } catch (err) {
       throw new Error('Could not find user!', { cause: err });
