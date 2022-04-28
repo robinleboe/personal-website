@@ -13,9 +13,16 @@ module.exports = buildSchema(`#graphql
     password: String
   }
 
+  type AuthData {
+    userId: ID!
+    token: String!
+    tokenExpiration: Int!
+  }
+
   type RootQuery {
     getUsers: [User!]!
     getUser(userId:ID!): User!
+    loginUser(email: String!, password: String!): AuthData!
   }
 
   type RootMutation {
